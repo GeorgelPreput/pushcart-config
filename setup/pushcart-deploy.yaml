@@ -1,0 +1,4 @@
+repos_user: pushcart
+git_provider: gitHub
+git_url: https://github.com/GeorgelPreput/pushcart-config.git
+git_branch: main
