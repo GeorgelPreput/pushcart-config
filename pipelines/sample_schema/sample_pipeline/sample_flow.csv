@@ -1,0 +1,4 @@
+column_order,source_column_name,source_column_type,dest_column_name,dest_column_type,transform_function,default_value,not_null
+0,id,string,ID,int,,,true
+1,name,string,Name,string,,,
+2,event_ts,string,EventTimestamp,timestamp,"F.to_timestamp(F.col('event_ts'), 'dd-MM-yyyy HH:mm:ss')",,true

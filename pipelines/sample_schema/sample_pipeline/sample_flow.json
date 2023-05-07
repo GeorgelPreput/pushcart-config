@@ -1,0 +1,49 @@
+{
+    "sources": [
+        {
+            "origin": "/path/to/delta",
+            "type": "delta",
+            "into": "vw__raw__delta_source",
+            "params": {
+                "sample_parameter": "has_some_value",
+                "second_parameter": "another_value"
+            }
+        },
+        {
+            "origin": "schema_name.table_name",
+            "type": "table",
+            "into": "vw__raw__schema_name_table_name"
+        }
+    ],
+    "transformations": [
+        {
+            "origin": "vw__raw__delta_source",
+            "into": "vw__raw__delta_source__transformed",
+            "config": "sample_flow.csv"
+        },
+        {
+            "origin": "vw__raw__schema_name_table_name",
+            "into": "vw__raw__schema_name_table_name__transformed",
+            "sql_query": "SELECT * FROM LIVE.vw__raw__schema_name_table_name"
+        }
+    ],
+    "destinations": [
+        {
+            "origin": "vw__raw__delta_source__transformed",
+            "into": "bronze__delta_source",
+            "keys": [
+                "id"
+            ],
+            "sequence_by": "event_ts"
+        },
+        {
+            "origin": "vw__raw__schema_name_table_name__transformed",
+            "into": "bronze__table_name",
+            "keys": [
+                "category",
+                "obj_id"
+            ],
+            "sequence_by": "event_ts"
+        }
+    ]
+}
