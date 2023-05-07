@@ -31,6 +31,7 @@
         {
             "origin": "vw__raw__delta_source__transformed",
             "into": "bronze__delta_source",
+            "mode": "append",
             "keys": [
                 "id"
             ],
@@ -39,6 +40,7 @@
         {
             "origin": "vw__raw__schema_name_table_name__transformed",
             "into": "bronze__table_name",
+            "mode": "upsert",
             "keys": [
                 "category",
                 "obj_id"
